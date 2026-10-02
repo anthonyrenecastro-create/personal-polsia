@@ -1,0 +1,58 @@
+id: quadra-mind-sight
+name: Quadra-M.I.N.D. Sight
+owner: Zebulon
+stage: production-draft-staged
+
+vision: >
+  Metacognitive training app (13 views: dashboard, session runner, journal,
+  audio lab with binaural engine, facilitator, etc.) shipped as a PWA and
+  Android app via TWA, helping users train attention and self-awareness.
+
+product:
+  local_path: ~/workspace/projects/quadra-mind-sight
+  live_url: https://quadra-mind-sight.onrender.com
+  github: anthonyrenecastro-create/quadra-mind-sight
+  github_default_branch: master
+  play_package: org.axiomzetainnovations.quadraroundsight
+  play_developer: Axiom Zeta Innovations (Organization, ID 9165069201959778641)
+
+next_milestone: >
+  Send the staged production release for review (US only, bundle v2 / 1.0.0),
+  after rewriting the release notes for a public audience. Draft is staged;
+  nothing has been submitted. Zebulon decided 2026-10-01 to wait until after
+  the ~72h post-org-conversion window (~2026-10-02 13:06 CDT) before deciding.
+
+metrics_to_watch:
+  - Play Console: production release status, review state, Alpha opt-ins (Team Apex, 4 users)
+  - Live site HTTP status (checked by scripts/check_status.py)
+  - Render deploy state (read-only check only)
+
+pricing_decision:
+  monthly: "$14.99/month"
+  annual_launch: "$79.99/year (temporary launch sale, ~55% off monthly equivalent; regular annual TBD, was considering $119.99)"
+  note: >
+    Play Billing + paywall were removed 2026-09-24 and must be re-added
+    before charging; Play financial-features declaration and store listing
+    must be updated at the same time. Do not re-add without Zebulon's go-ahead.
+
+channels:
+  - Google Play (Closed testing - Alpha active; Production draft staged)
+  - Web PWA on Render
+
+guardrails:
+  - Tier 2 (approval required): any Play submission, rollout, country change,
+    release creation/send-for-review, pricing change, billing re-add.
+  - Do not re-add the paywall or the removed Google sign-in gate on your own.
+  - Keystore + password stay local; off-VM backup only to a destination Zebulon names.
+  - Report exact Play Console UI state; do not guess why a button is disabled.
+
+open_loops:
+  - Rewrite production release notes for public audience (currently copied from Alpha closed-test text)
+  - Decide send-for-review: after 2026-10-02 ~13:06 CDT (nudge cron quadra-production-review-nudge, ~14:08 CDT 2026-10-02)
+  - Off-VM keystore backup (destination not yet named by Zebulon)
+  - GEMINI_API_KEY not set on Render (AI endpoints use fallbacks until he adds it)
+  - Billing re-add + financial-features declaration (deferred, on his call)
+
+validation:
+  status: validated-enough-to-ship
+  note: Existing product with closed-testing cohort; validation gate applies to new paid-tier positioning, not to shipping v1.

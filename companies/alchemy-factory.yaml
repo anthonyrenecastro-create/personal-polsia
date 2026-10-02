@@ -1,0 +1,52 @@
+id: alchemy-factory
+name: Alchemy Factory
+owner: Zebulon
+stage: stage-4-security-fixes-ci-red
+
+vision: >
+  Solana-first creator studio and holder app for experimental tokens with
+  five mechanic families (dynamic/oracle, time-decay, hierarchical container,
+  bonding-curve, proof-of-X), an optional PAXG collateral module, and a
+  Jubilee simulation. Devnet-first, no wallet needed to learn, honest about
+  what is simulated vs on-chain.
+
+product:
+  local_path: ~/workspace/projects/alchemy-factory
+  github: anthonyrenecastro-create/alchemy-factory
+  github_default_branch: main
+  live_url: null
+  chain: Solana devnet (mainnet only with explicit approval)
+
+next_milestone: >
+  Get CI green on main (last runs 2026-09-27 all failure), then request
+  Zebulon's separate explicit approval for a devnet deploy and prove it with
+  a real end-to-end devnet transaction. Stage 4 security review is complete
+  (14 findings fixed with regression tests); mainnet-readiness report exists.
+
+metrics_to_watch:
+  - GitHub Actions: alchemy-factory-ci conclusion on main
+  - SDK test count (was 121/121 passing locally 2026-09-27)
+  - Devnet program deploy status (none approved yet)
+
+channels:
+  - GitHub (public repo)
+  - Solana devnet (future, gated)
+
+guardrails:
+  - Tier 2: any devnet or mainnet deploy, GitHub push to main, public claims.
+  - MOCK-GOLD strictly on devnet. Real PAXG is mainnet-only, stage-4+,
+    gated on direct Paxos confirmation + threat model.
+  - Real PAXG mint (Token-2022, 5GgRAEmv8ZxF2PR5hY72Qs5x1bnQ6UK2RbTPoqJ3wSwW)
+    has a permanent delegate + confidential transfers + mint close authority;
+    never present it as permissionless. Do not confuse with WPAXG (wormhole).
+  - Programs are unverified until CI passes AND a devnet transaction succeeds.
+  - Chainstack credentials server-side only, never in frontend or to Evie in chat.
+
+open_loops:
+  - CI red since 2026-09-27 (last run 36325451681, failure) — diagnose next failure layer
+  - Devnet deploy awaiting Zebulon's explicit approval (after CI green)
+  - Confirm CI fixes pushed are the ones failing (verify via GitHub API, not local log)
+
+validation:
+  status: build-in-progress
+  note: Experimental infra; validation gate applies before any mainnet or paid positioning.

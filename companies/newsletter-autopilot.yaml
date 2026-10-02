@@ -1,0 +1,46 @@
+id: newsletter-autopilot
+name: newsletter-autopilot
+owner: Zebulon
+stage: publish-built-auth-unresolved
+
+vision: >
+  Automate the free tier beside Zebulon's daily newsletter: ingest his
+  written draft, generate an AI-written free preview edition, and publish
+  through Shopify (Shopify handles payments + publication).
+
+product:
+  local_path: ~/workspace/projects/newsletter-autopilot
+  github: anthonyrenecastro-create/newsletter-autopilot
+  github_default_branch: main
+  live_url: null
+  note: Local copy is not a git repo on this VM; GitHub is the source of truth. Verify pushes via GitHub API.
+
+next_milestone: >
+  Capture/test the Shopify Admin API token securely and run the live
+  connection check, then decide the open product choices (draft source, AI
+  provider, publication surface, review gate, scheduler). Publish step is
+  implemented and typechecks clean; PREVIEW_AUTO_PUBLISH is off by default.
+
+metrics_to_watch:
+  - Shopify connection check result (not yet run live)
+  - Preview generation quality (once ingest/preview are implemented)
+  - Publish success to SHOPIFY_PREVIEW_BLOG_ID (gated off)
+
+channels:
+  - Shopify blog (preview edition surface, current implementation)
+  - Zebulon's daily newsletter (source material; surface TBD)
+
+guardrails:
+  - Tier 2: publishing anything, turning PREVIEW_AUTO_PUBLISH on, sending email.
+  - Shopify token (shpat_...) via Secure Vault only; never chat, files, or logs.
+    Client secret stays unused until webhooks are added.
+  - Do not claim a push or connection without GitHub/Shopify API verification.
+
+open_loops:
+  - Zebulon has the Shopify token; secure capture form sent 2026-10-01 21:14 UTC — not yet captured/tested
+  - Decide: draft source, AI provider, publication surface (Shopify Email vs blog), review gate, scheduler
+  - Confirm/correct storefront repo reference (anthonycastro-spaceace01 / cyberpunk-shopify-storefront 404s; closest are az-emergent-nexus, the-singularity-point-store)
+
+validation:
+  status: owner-operated-tool
+  note: Internal automation for Zebulon's own newsletter; validation gate applies if productized for others.
